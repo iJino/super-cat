@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liangjinhai.supercat.sys.mapper.RoleMapper">
+
+    <select id="getRolesById" resultType="Role">
+        SELECT id, role_name, name, parent_role_id, status, create_time
+        FROM role
+        where id = #{id}
+    </select>
+</mapper>

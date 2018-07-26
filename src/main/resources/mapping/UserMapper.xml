@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liangjinhai.supercat.sys.mapper.UserMapper">
+
+    <resultMap id="UserRole" type="User">
+        <id column="uid" property="id"></id>
+        <result column="uname" property="username"></result>
+        <collection property="roles" javaType="java.util.Set" ofType="Role">
+            <id column="rid" property="id"></id>
+            <result column="rname" property="roleName"></result>
+        </collection>
+    </resultMap>
+    <select id="getUserRole" resultMap="UserRole">
+        select u.id uid , u.username uname, r.id rid, r.role_name rname
+        from user u
+        LEFT JOIN user_role ur on u.id = ur.user_id
+        LEFT JOIN role r on r.id = ur.role_id
+        where u.username = #{username}
+    </select>
+
+    <select id="getUserByUserName" resultType="User">
+        SELECT *
+        FROM user
+        where username = #{username}
+    </select>
+    
+    <select id="queryUser" resultType="User">
+        SELECT id, username, mobile_phone, password, salt, create_time, modify_time, expiry_time, id_num, status,createby
+        FROM user
+        ORDER BY create_time
+        DESC
+    </select>
+
+    <select id="queryUserById" resultType="User">
+        SELECT id, username, mobile_phone, password, salt, create_time, modify_time, expiry_time, id_num, status,createby
+        FROM user
+        WHERE
+        id = #{userId}
+    </select>
+
+    <insert id="insertUser" useGeneratedKeys="true" keyProperty="id"
+            keyColumn="id" parameterType="User">
+        INSERT INTO  user(username, mobile_phone, password, salt, create_time, modify_time, expiry_time, id_num, status,createby)
+        VALUES
+        (#{username},#{mobilePhone},#{password},#{salt},#{createTime},#{modifyTime},#{expiryTime},#{idNum},#{status},#{createby})
+    </insert>
+
+    <update id="updateUser" parameterType="User">
+        UPDATE user
+        <set>
+            <if test="username!=null">username=#{username}</if>
+            <if test="mobilePhone!=null">mobile_phone=#{mobilePhone}</if>
+            <if test="password!=null">password=#{password}</if>
+            <if test="salt!=null">salt=#{salt}</if>
+            <if test="createTime!=null">create_time=#{createTime}</if>
+            <if test="modifyTime!=null">modify_time=#{modifyTime}</if>
+            <if test="expiryTime!=null">expiry_time=#expiryTime{}</if>
+            <if test="idNum!=null">id_num=#{idNum}</if>
+            <if test="status!=null">status=#{status}</if>
+            <if test="createby!=null">createby=#{createby}</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteUser">
+        DELETE FROM
+        user
+        WHERE
+        id = #{id}
+    </delete>
+
+    <select id="getPasswordByUserName" resultType="String">
+        SELECT password
+        FROM user
+        WHERE username = #{username}
+    </select>
+</mapper>
