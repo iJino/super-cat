@@ -19,12 +19,9 @@ import static org.junit.Assert.*;
 @SpringBootTest
 public class UserMapperTest {
 
-    @Autowired
-    private UserMapper userMapper;
+
     @Autowired
     private UserService userService;
-    @Autowired
-    private RoleMapper roleMapper;
     @Autowired
     private RoleService roleService;
     @Test
@@ -40,18 +37,21 @@ public class UserMapperTest {
     }
     @Test
     public void getUserRole(){
-        User user = userMapper.getUserRole("test");
+//        User user = userMapper.getUserRole("test");
+        User user = userService.getUserByUseName("1");
         System.out.println(user);
     }
     @Test
+    @Ignore
     public void queryBasicUserById() {
-        User user = userMapper.queryUserById(1);
-        System.out.println(user);
+//        User user = userMapper.queryUserById(1);
+//        System.out.println(user);
     }
     @Test
+    @Ignore
     public void getPasswordByUsername(){
-        String password = userMapper.getPasswordByUserName("test");
-        System.out.println(password);
+//        String password = userMapper.getPasswordByUserName("test");
+//        System.out.println(password);
     }
 
     @Test
