@@ -48,5 +48,5 @@ public interface UserMapper {
 
     User getUserRole(String username);
 
-    User getUserByUseName(String username);
+    User getUserByUserName(String username);
 }

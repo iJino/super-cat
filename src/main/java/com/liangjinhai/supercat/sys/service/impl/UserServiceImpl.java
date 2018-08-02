@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+
 @Service("basicUserService")
 public class UserServiceImpl implements UserService {
 
@@ -40,7 +41,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserByUseName(String username) {
-        return userMapper.getUserRole(username);
+    public User getUserByUserName(String username) {
+        return userMapper.getUserByUserName(username);
     }
 }

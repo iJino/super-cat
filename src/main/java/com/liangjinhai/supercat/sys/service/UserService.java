@@ -16,5 +16,5 @@ public interface UserService {
 
     String getPasswordByUserName(String username);
 
-    User getUserByUseName(String username);
+    User getUserByUserName(String username);
 }

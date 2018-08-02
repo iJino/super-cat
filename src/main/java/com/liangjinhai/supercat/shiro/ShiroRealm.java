@@ -51,8 +51,7 @@ public class ShiroRealm extends AuthorizingRealm {
         System.out.println(token.getHost());
         //1、从主体传过来的认证信息中，获得用户名
         String userName = (String) authenticationToken.getCredentials();
-        User user = userService.getUserByUseName(userName);
-
+        User user = userService.getUserByUserName(userName);
         if(ObjectUtil.isEmpty(user)){
             throw new UnknownAccountException();
         }
