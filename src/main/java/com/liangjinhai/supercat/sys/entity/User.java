@@ -18,7 +18,7 @@ public class User {
     /**联系电话*/
     private String mobilePhone;
     /**密码*/
-    private String passwork;
+    private String password;
     /**盐*/
     private String salt;
     /**创建时间*/
@@ -96,12 +96,12 @@ public class User {
         this.mobilePhone = mobilePhone == null ? null : mobilePhone.trim();
     }
 
-    public String getPasswork() {
-        return passwork;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPasswork(String passwork) {
-        this.passwork = passwork == null ? null : passwork.trim();
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getSalt() {

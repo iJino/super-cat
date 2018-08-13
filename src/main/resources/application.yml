@@ -1,0 +1,15 @@
+server:
+  port: 8888
+  servlet:
+    context-path: /supercat
+
+jdbc:
+  driver: com.mysql.jdbc.Driver
+  url: jdbc:mysql://127.0.0.1:3306/supercat?useUnicode=true&characterEncoding=utf8&useSSL=false
+  username: root
+  password: 123456
+
+mybatis_config_file: mybatis-config.xml
+mapper_path: /mapping/**.xml
+entity_package: com.liangjinhai.supercat.sys.entity
+

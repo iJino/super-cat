@@ -1,5 +1,6 @@
 package com.liangjinhai.supercat;
 
+import com.liangjinhai.supercat.shiro.ShiroRealm;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.mgt.DefaultSecurityManager;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 
+import javax.annotation.Resource;
 import javax.sql.DataSource;
 
 public class JdbcRealmTest {
@@ -20,30 +22,15 @@ public class JdbcRealmTest {
 
     @Test
     public void testAuthentication(){
-
-       JdbcRealm jdbcRealm = new JdbcRealm();
-       jdbcRealm.setDataSource(dataSource);
-
-
-        //1、创建SecurityManager环境
-        DefaultSecurityManager defaultSecurityManager = new DefaultSecurityManager();
-        defaultSecurityManager.setRealm(jdbcRealm);
-
-        //2、主体提交认证请求
-        SecurityUtils.setSecurityManager(defaultSecurityManager);
-        Subject subject = SecurityUtils.getSubject();
+        Subject currentUser = SecurityUtils.getSubject();
 
         UsernamePasswordToken token = new UsernamePasswordToken("Mark","123456");
-        subject.login(token);
+        currentUser.login(token);
 
-        System.out.println("isAuthenticated:"+subject.isAuthenticated());
-        subject.isAuthenticated();
+        System.out.println("isAuthenticated:"+currentUser.isAuthenticated());
+        if(currentUser.isAuthenticated()){
+            System.out.println(currentUser.isAuthenticated());
+        }
 
-//        subject.logout();
-//
-//        System.out.println("isAuthenticated:"+subject.isAuthenticated());
-//        subject.checkRoles("admin");
-//
-//        subject.checkPermission("user:update");
     }
 }

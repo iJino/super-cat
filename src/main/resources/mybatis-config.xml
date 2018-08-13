@@ -9,7 +9,7 @@
         <setting name="useColumnLabel" value="true"/>
         <!-- 开启驼峰命名转换:Table{create_time} -> Entry{createTime} -->
         <setting name="mapUnderscoreToCamelCase" value="true"/>
-
+        <!-- sql日志输出 -->
         <setting name="logImpl" value="STDOUT_LOGGING" />
     </settings>
 </configuration>
