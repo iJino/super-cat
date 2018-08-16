@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class test {
     @RequestMapping("/test")
     public String test(){
-        return "testtest";
+        return "/test/test";
     }
 
     @RequestMapping("/testFreemarker")

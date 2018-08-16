@@ -55,23 +55,24 @@ public class FilterChainDefinitionsServiceImpl implements FilterChainDefinitions
     public Map<String, String> loadFilterChainDefinitionMap() {
         //拦截器
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
-        filterChainDefinitionMap.put("/b2b/**", "anon");
-        filterChainDefinitionMap.put("/artdialog/**", "anon");
-        filterChainDefinitionMap.put("/images/**", "anon");
-        filterChainDefinitionMap.put("/adminlte/**", "anon");
-        filterChainDefinitionMap.put("/ws/**", "anon");
-        filterChainDefinitionMap.put("/soap/**", "anon");
-        filterChainDefinitionMap.put("/login_phone", "anon");
+        filterChainDefinitionMap.put("/supercat/**", "anon");
+        filterChainDefinitionMap.put("/test/**", "anon");
+//        filterChainDefinitionMap.put("/artdialog/**", "anon");
+//        filterChainDefinitionMap.put("/images/**", "anon");
+//        filterChainDefinitionMap.put("/adminlte/**", "anon");
+//        filterChainDefinitionMap.put("/ws/**", "anon");
+//        filterChainDefinitionMap.put("/soap/**", "anon");
+//        filterChainDefinitionMap.put("/login_phone", "anon");
         filterChainDefinitionMap.put("/login", "shiroFilter");
-        filterChainDefinitionMap.put("/logout", "anon");
-        filterChainDefinitionMap.put("/err/**", "anon");
-        filterChainDefinitionMap.put("/evaluation/**", "anon");
-
-        filterChainDefinitionMap.put("/order/**", "authc");
-        filterChainDefinitionMap.put("/change/**", "authc");
-        filterChainDefinitionMap.put("/teamOrder/**", "authc");
-        filterChainDefinitionMap.put("/buy/saveRouting", "authc");//保存对应航段信息
-        filterChainDefinitionMap.put("/buy/checkPrice", "authc");//验价
+//        filterChainDefinitionMap.put("/logout", "anon");
+//        filterChainDefinitionMap.put("/err/**", "anon");
+//        filterChainDefinitionMap.put("/evaluation/**", "anon");
+//
+//        filterChainDefinitionMap.put("/order/**", "authc");
+//        filterChainDefinitionMap.put("/change/**", "authc");
+//        filterChainDefinitionMap.put("/teamOrder/**", "authc");
+//        filterChainDefinitionMap.put("/buy/saveRouting", "authc");//保存对应航段信息
+//        filterChainDefinitionMap.put("/buy/checkPrice", "authc");//验价
 
         List<Menu> menus = menuService.findAllPower();
         Map<String, List<String>> map = new LinkedHashMap<>();

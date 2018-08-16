@@ -2,7 +2,6 @@ package com.liangjinhai.supercat.sys.entity;
 
 
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
 
 /**

@@ -31,6 +31,5 @@ public class JdbcRealmTest {
         if(currentUser.isAuthenticated()){
             System.out.println(currentUser.isAuthenticated());
         }
-
     }
 }

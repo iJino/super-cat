@@ -2,7 +2,7 @@ package com.liangjinhai.supercat.sys.entity;
 
 import com.liangjinhai.supercat.shiro.ShiroHttpMethodPermissionFilter;
 import com.liangjinhai.supercat.sys.enums.MenuType;
-import com.liangjinhai.supercat.sys.enums.Status;
+import com.liangjinhai.supercat.sys.enums.StatusEnums;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -17,7 +17,7 @@ public class Menu {
 
     private String menuKey;
 
-    private MenuType type;
+    private String type;
 
     private String menuValue;
 
@@ -30,7 +30,7 @@ public class Menu {
      */
     private Set<Menu> menus = new HashSet<>();
 
-    private Status status;
+    private StatusEnums status;
 
     private ShiroHttpMethodPermissionFilter.HttpMethod httpMethod;
 
@@ -56,11 +56,11 @@ public class Menu {
         this.name = name;
     }
 
-    public MenuType getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(MenuType type) {
+    public void setType(String type) {
         this.type = type;
     }
 
@@ -89,11 +89,11 @@ public class Menu {
         this.menus = menus;
     }
 
-    public Status getStatus() {
+    public StatusEnums getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(StatusEnums status) {
         this.status = status;
     }
 

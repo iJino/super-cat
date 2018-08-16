@@ -1,7 +1,6 @@
 package com.liangjinhai.supercat.shiro;
 
 
-import com.liangjinhai.supercat.common.util.CollectionUtil;
 import com.liangjinhai.supercat.common.util.ObjectUtil;
 import com.liangjinhai.supercat.sys.entity.Menu;
 import com.liangjinhai.supercat.sys.entity.RoleMenu;
