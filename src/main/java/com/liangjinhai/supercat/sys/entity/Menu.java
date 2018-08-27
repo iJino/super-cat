@@ -1,7 +1,7 @@
 package com.liangjinhai.supercat.sys.entity;
 
-import com.liangjinhai.supercat.shiro.ShiroHttpMethodPermissionFilter;
-import com.liangjinhai.supercat.sys.enums.MenuType;
+
+import com.liangjinhai.supercat.sys.enums.HttpMethod;
 import com.liangjinhai.supercat.sys.enums.StatusEnums;
 
 import java.util.Date;
@@ -32,7 +32,7 @@ public class Menu {
 
     private StatusEnums status;
 
-    private ShiroHttpMethodPermissionFilter.HttpMethod httpMethod;
+    private HttpMethod httpMethod;
 
     private Date createTime = new Date();
 
@@ -121,14 +121,14 @@ public class Menu {
         this.roleMenus = roleMenus;
     }
 
-    public ShiroHttpMethodPermissionFilter.HttpMethod getHttpMethod() {
+    public HttpMethod getHttpMethod() {
         return httpMethod;
     }
 
-    public void setHttpMethod(ShiroHttpMethodPermissionFilter.HttpMethod httpMethod) {
+    public void setHttpMethod(HttpMethod httpMethod) {
         this.httpMethod = httpMethod;
     }
-    //
+
     public Integer getSortId() {
         return sortId;
     }

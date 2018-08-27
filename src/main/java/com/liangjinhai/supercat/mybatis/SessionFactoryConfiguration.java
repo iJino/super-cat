@@ -35,7 +35,7 @@ public class SessionFactoryConfiguration {
         sqlSessionFactoryBean.setMapperLocations(resolver.getResources(packageSearchPath));
         //获取数据库连接池
         sqlSessionFactoryBean.setDataSource(dataSource);
-        //根据路径找到实体，起别名（暂不知作用是啥）网上说是将对应实体整个路径起一个别名已达到减少代码量
+        //根据路径找到实体，起别名，将对应实体整个路径起一个别名已达到减少代码量
         sqlSessionFactoryBean.setTypeAliasesPackage(entityPackage);
         return sqlSessionFactoryBean;
     }

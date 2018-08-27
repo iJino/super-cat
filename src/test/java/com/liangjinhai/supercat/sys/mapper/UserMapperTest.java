@@ -31,6 +31,7 @@ public class UserMapperTest {
     private MenuService menuService;
 
     @Test
+    @Ignore
     public void queryAllmenu(){
         List<Menu> menuList = menuService.findAllPower();
     }
@@ -49,7 +50,6 @@ public class UserMapperTest {
         System.out.println(r.getName());
     }
     @Test
-    @Ignore
     public void getUserRole(){
 //        User user = userMapper.getUserRole("test");
         User user = userService.getUserByUserName("1");

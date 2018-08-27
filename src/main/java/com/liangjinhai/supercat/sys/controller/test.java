@@ -21,15 +21,8 @@ public class test {
     @RequestMapping("/testFreemarker")
     public ModelAndView testFreemarker(Model model){
         ModelAndView mv = new ModelAndView("/test/test");
-        Subject currentUser = SecurityUtils.getSubject();
-        String name = "testShiro";
-        UsernamePasswordToken token = new UsernamePasswordToken("Mark","123456");
-        currentUser.login(token);
-        if(currentUser.isAuthenticated()){
-            name = "login success";
-        }
-        mv.addObject("name",name);
-        mv.addObject("mimi","咪咪是一只大傻狗");
+        mv.addObject("name","卢镇安");
+        mv.addObject("mimi","是一只大傻狗");
         return mv;
     }
 
