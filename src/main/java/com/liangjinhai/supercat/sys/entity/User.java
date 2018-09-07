@@ -7,30 +7,50 @@ import java.util.Set;
 /**
  * @author: liangjinhai
  * @date: 2018/7/8 17:15
- * @decapitalize:  基本用户信息
+ * @decapitalize: 基本用户信息
  */
 public class User {
 
     private Integer id;
-    /**用户名*/
+    /**
+     * 用户名
+     */
     private String username;
-    /**联系电话*/
+    /**
+     * 联系电话
+     */
     private String mobilePhone;
-    /**密码*/
+    /**
+     * 密码
+     */
     private String password;
-    /**盐*/
+    /**
+     * 盐
+     */
     private String salt;
-    /**创建时间*/
+    /**
+     * 创建时间
+     */
     private Date createTime;
-    /**修改时间*/
+    /**
+     * 修改时间
+     */
     private Date modifyTime;
-    /**停用时间*/
+    /**
+     * 停用时间
+     */
     private Date expiryTime;
-    /**身份证*/
+    /**
+     * 身份证
+     */
     private String idNum;
-    /**状态*/
+    /**
+     * 状态
+     */
     private String status;
-    /**创建人*/
+    /**
+     * 创建人
+     */
     private Integer createby;
 
     private User parentUser;
@@ -157,5 +177,21 @@ public class User {
 
     public void setCreateby(Integer createby) {
         this.createby = createby;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" + "id=" + id + ", username='" + username + '\'' + ", mobilePhone='" + mobilePhone + '\'' + ", password='" + password + '\'' +
+                ", salt='" + salt + '\'' +
+                ", createTime=" + createTime +
+                ", modifyTime=" + modifyTime +
+                ", expiryTime=" + expiryTime +
+                ", idNum='" + idNum + '\'' +
+                ", status='" + status + '\'' +
+                ", createby=" + createby +
+                ", parentUser=" + parentUser +
+                ", childUser=" + childUser +
+                ", roles=" + roles +
+                '}';
     }
 }

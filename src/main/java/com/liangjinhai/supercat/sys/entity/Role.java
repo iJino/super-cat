@@ -20,7 +20,9 @@ public class Role {
     //多对一
     private Role parentRole;
     //一对多
-    private List<Role> childRoles;
+    private Set<Role> childRoles;
+
+    private Set<Menu> menus;
 
     public Integer getId() {
         return id;
@@ -78,11 +80,33 @@ public class Role {
         this.parentRole = parentRole;
     }
 
-    public List<Role> getChildRoles() {
+    public Set<Role> getChildRoles() {
         return childRoles;
     }
 
-    public void setChildRoles(List<Role> childRoles) {
+    public void setChildRoles(Set<Role> childRoles) {
         this.childRoles = childRoles;
+    }
+
+    public Set<Menu> getMenus() {
+        return menus;
+    }
+
+    public void setMenus(Set<Menu> menus) {
+        this.menus = menus;
+    }
+
+    @Override
+    public String toString() {
+        return "Role{" +
+                "id=" + id +
+                ", RoleName='" + RoleName + '\'' +
+                ", name='" + name + '\'' +
+                ", parentRoleId=" + parentRoleId +
+                ", status='" + status + '\'' +
+                ", createTime=" + createTime +
+                ", parentRole=" + parentRole +
+                ", childRoles=" + childRoles +
+                '}';
     }
 }

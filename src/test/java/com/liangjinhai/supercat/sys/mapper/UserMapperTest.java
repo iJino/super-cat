@@ -52,7 +52,7 @@ public class UserMapperTest {
     @Test
     public void getUserRole(){
 //        User user = userMapper.getUserRole("test");
-        User user = userService.getUserByUserName("1");
+        User user = userService.getUserRole("Mark");
         System.out.println(user);
     }
     @Test
