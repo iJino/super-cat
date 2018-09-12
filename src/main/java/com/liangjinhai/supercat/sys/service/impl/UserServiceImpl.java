@@ -3,17 +3,24 @@ package com.liangjinhai.supercat.sys.service.impl;
 import com.liangjinhai.supercat.sys.entity.User;
 import com.liangjinhai.supercat.sys.mapper.UserMapper;
 import com.liangjinhai.supercat.sys.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.Cache;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.ehcache.EhCacheCacheManager;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 
 @Service("userService")
 public class UserServiceImpl implements UserService {
 
-    @Autowired
+    private static final String CACHE_KEY = "users";
+
+    @Resource
     private UserMapper userMapper;
+    @Resource
+    private EhCacheCacheManager cacheManager;
 
     @Override
     public List<User> queryUser() {
@@ -21,8 +28,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Cacheable(value = CACHE_KEY,key = "'user_' + #id")
     public User queryUserById(int userId) {
-        return userMapper.queryUserById(userId);
+        User user = userMapper.queryUserById(userId);
+        return user;
     }
 
     @Override

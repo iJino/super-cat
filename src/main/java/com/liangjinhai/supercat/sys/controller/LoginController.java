@@ -75,7 +75,7 @@ public class LoginController {
             logger.error("登出异常", e);
         }
         if (null != SecurityUtils.getSubject() && SecurityUtils.getSubject().isAuthenticated()) {
-            return "redirect:/index";
+            return "redirect:/test/findUser";
         } else {
             return "login";
         }

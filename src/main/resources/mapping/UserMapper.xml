@@ -77,6 +77,10 @@
         WHERE id = #{id}
     </update>
 
+    <insert id="save" parameterType="User">
+        INSERT INTO user
+    </insert>
+
     <delete id="deleteUser">
         DELETE FROM
         user
