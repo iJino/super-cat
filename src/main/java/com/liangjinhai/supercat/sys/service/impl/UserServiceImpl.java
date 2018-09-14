@@ -4,13 +4,11 @@ import com.liangjinhai.supercat.sys.entity.User;
 import com.liangjinhai.supercat.sys.mapper.UserMapper;
 import com.liangjinhai.supercat.sys.service.UserService;
 import org.springframework.cache.Cache;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.ehcache.EhCacheCacheManager;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
-
 
 @Service("userService")
 public class UserServiceImpl implements UserService {
@@ -28,9 +26,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Cacheable(value = CACHE_KEY,key = "'user_' + #id")
     public User queryUserById(int userId) {
-        User user = userMapper.queryUserById(userId);
+        User user = new User();
+        Cache cache = cacheManager.getCache(CACHE_KEY);
+        if (null == cache.get("user_2")) {
+            System.err.println("缓存里没有user_"+userId+",所以这边没有走缓存，从数据库拿数据");
+            user = userMapper.queryUserById(userId);
+            cache.put("user_"+userId,user);
+        }else{
+            user = (User) cache.get("user_"+userId).get();
+        }
         return user;
     }
 

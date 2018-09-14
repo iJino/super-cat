@@ -26,12 +26,7 @@ public class testController {
     public String getUser() {
         User user = new User();
         Cache cache = cacheManager.getCache(USER_CACHE);
-        if (null != cache.get("user_2")) {
-            user = (User) cache.get("user_2").get();
-        } else {
-            user = userService.queryUserById(2);
-            cache.put("user_" + user.getId(), user);
-        }
+        user = userService.queryUserById(2);
         return user.toString();
     }
 
@@ -39,13 +34,8 @@ public class testController {
     @ResponseBody
     public String testEHcache() {
         User user = new User();
-        Cache cache = cacheManager.getCache(USER_CACHE);
-        if (null != cache.get("user_2")) {
-            user = (User) cache.get("user_2").get();
-            cache.clear();
-        } else {
-            user = userService.queryUserById(2);
-        }
+        user = userService.queryUserById(2);
         return user.toString();
     }
+
 }

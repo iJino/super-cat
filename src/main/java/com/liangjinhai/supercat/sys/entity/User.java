@@ -1,15 +1,20 @@
 package com.liangjinhai.supercat.sys.entity;
 
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
 /**
+ *
+ * 由于二级缓存的数据不一定都是存储到内存中，它的存储介质多种多样，所以需要给缓存的对象执行序列化。
+ * 如果该类存在父类，那么父类也要实现序列化。Serializable
+ *
  * @author: liangjinhai
  * @date: 2018/7/8 17:15
  * @decapitalize: 基本用户信息
  */
-public class User {
+public class User implements Serializable {
 
     private Integer id;
     /**

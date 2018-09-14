@@ -3,6 +3,12 @@
          xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd"
          updateCheck="false">
 
+    <diskStore path="user.dir/sqlEhCache" />
+    <!-- diskStore： 为缓存路径，ehcache分为内存和磁盘两级，此属性定义磁盘的缓存位置。参数解释如下：　　　　
+         　　　　user.home – 用户主目录
+        　　　 　user.dir  – 用户当前工作目录
+       　　　　  java.io.tmpdir – 默认临时文件路径 -->
+
     <defaultCache
             eternal="false"
             maxElementsInMemory="1000"

@@ -23,6 +23,7 @@
             </collection>
         </collection>
     </resultMap>
+
     <select id="getUserRole" resultMap="UserRole">
         select u.id uid, u.username uname,u.salt, u.password, u.status ustatus, u.expiry_time, r.id rid, r.name rname, r.role_name, r.status rstatus, m.id mid, m.name mname, m.type type, m.status mstatus, m.menu_value
         from user u
