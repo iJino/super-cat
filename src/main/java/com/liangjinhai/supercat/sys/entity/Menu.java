@@ -4,12 +4,13 @@ package com.liangjinhai.supercat.sys.entity;
 import com.liangjinhai.supercat.sys.enums.HttpMethod;
 import com.liangjinhai.supercat.sys.enums.StatusEnums;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 
-public class Menu {
+public class Menu implements Serializable {
 
     private Integer id;
 
@@ -34,7 +35,7 @@ public class Menu {
 
     private HttpMethod httpMethod;
 
-    private Date createTime = new Date();
+    private Date createTime;
 
     private Integer sortId = 200;
 

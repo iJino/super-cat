@@ -78,10 +78,6 @@
         WHERE id = #{id}
     </update>
 
-    <insert id="save" parameterType="User">
-        INSERT INTO user
-    </insert>
-
     <delete id="deleteUser">
         DELETE FROM
         user
@@ -93,5 +89,12 @@
         SELECT password
         FROM user
         WHERE username = #{username}
+    </select>
+
+    <select id="findAll" parameterType="com.liangjinhai.supercat.sys.criteria.UserCriteria" resultType="User">
+        select *
+        from user
+        where 1=1
+        <if test="status!=null">and status=#{status}</if>
     </select>
 </mapper>

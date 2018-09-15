@@ -1,5 +1,7 @@
 package com.liangjinhai.supercat.sys.mapper;
 
+import com.liangjinhai.supercat.common.vo.PageResult;
+import com.liangjinhai.supercat.sys.criteria.UserCriteria;
 import com.liangjinhai.supercat.sys.entity.User;
 
 import java.util.List;
@@ -49,4 +51,6 @@ public interface UserMapper {
     User getUserRole(String username);
 
     User getUserByUserName(String username);
+
+    List<User> findAll(UserCriteria criteria);
 }

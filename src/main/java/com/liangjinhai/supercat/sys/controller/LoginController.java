@@ -19,42 +19,57 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class LoginController {
-    private Logger logger = LoggerFactory.getLogger(LoginController.class);
+    private Logger log = LoggerFactory.getLogger(LoginController.class);
 
     @RequestMapping({"/","/login"})
     public ModelAndView login(){
         ModelAndView mv =new ModelAndView("/login");
+        ModelAndView success = new ModelAndView("/home");
+        try {
+            //    若已经登录或者cookies还存在
+            if (null != SecurityUtils.getSubject() && SecurityUtils.getSubject().isAuthenticated()) {
+                log.info("--进行登录验证..验证开始");
+                return success;
+            } else {
+                return mv;
+            }
+        } catch (Exception e) {
+
+        }
         return mv;
     }
 
     @PostMapping({"/","/login"})
-    public ModelAndView login(User user,RedirectAttributes redirectAttributes){
+    public ModelAndView login(User user,Boolean rememberMe,RedirectAttributes redirectAttributes){
         ModelAndView mv = new ModelAndView("/home");
         ModelAndView errormv = new ModelAndView("redirect:/login");
         String userName = user.getUsername();
         UsernamePasswordToken usernamePasswordToken=new UsernamePasswordToken(userName,user.getPassword());
         Subject subject = SecurityUtils.getSubject();
         try {
+            if (null != rememberMe && rememberMe) {
+                usernamePasswordToken.setRememberMe(true);
+            }
             subject.login(usernamePasswordToken);   //完成登录
             subject.getSession().setAttribute("user", user);
             return mv;
         } catch (ExpiredCredentialsException uae) {
             redirectAttributes.addFlashAttribute("message", "账号已过期");
         } catch (UnknownAccountException uae) {
-            logger.info("对用户[" + userName + "]进行登录验证..验证未通过,未知账户");
+            log.info("对用户[" + userName + "]进行登录验证..验证未通过,未知账户");
             redirectAttributes.addFlashAttribute("message", "未知账户");
         } catch (IncorrectCredentialsException ice) {
-            logger.info("对用户[" + userName + "]进行登录验证..验证未通过,错误的凭证");
+            log.info("对用户[" + userName + "]进行登录验证..验证未通过,错误的凭证");
             redirectAttributes.addFlashAttribute("message", "用户名或密码不正确");
         } catch (LockedAccountException lae) {
-            logger.info("对用户[" + userName + "]进行登录验证..验证未通过,账户已锁定");
+            log.info("对用户[" + userName + "]进行登录验证..验证未通过,账户已锁定");
             redirectAttributes.addFlashAttribute("message", "账户已锁定");
         } catch (ExcessiveAttemptsException eae) {
-            logger.info("对用户[" + userName + "]进行登录验证..验证未通过,错误次数过多");
+            log.info("对用户[" + userName + "]进行登录验证..验证未通过,错误次数过多");
             redirectAttributes.addFlashAttribute("message", "用户名或密码错误次数过多");
         } catch (AuthenticationException ae) {
 //            通过处理Shiro的运行时AuthenticationException就可以控制用户登录失败或密码错误时的情景
-            logger.info("对用户[" + userName + "]进行登录验证..验证未通过,堆栈轨迹如下");
+            log.info("对用户[" + userName + "]进行登录验证..验证未通过,堆栈轨迹如下");
             ae.printStackTrace();
             redirectAttributes.addFlashAttribute("message", "用户名或密码不正确");
         }
@@ -66,16 +81,16 @@ public class LoginController {
     public String logout(Model model, RedirectAttributes redirectAttributes) {
 
         try {
-            logger.info("go to logout");
+            log.info("go to logout");
             SecurityUtils.getSubject().logout();
             redirectAttributes.addFlashAttribute("message", "您已安全退出");
             model.addAttribute("message", "您已安全退出");
-            logger.info("登出");
+            log.info("登出");
         } catch (Exception e) {
-            logger.error("登出异常", e);
+            log.error("登出异常", e);
         }
         if (null != SecurityUtils.getSubject() && SecurityUtils.getSubject().isAuthenticated()) {
-            return "redirect:/test/findUser";
+            return "redirect:/home";
         } else {
             return "login";
         }

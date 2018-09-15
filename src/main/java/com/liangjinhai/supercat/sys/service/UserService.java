@@ -1,5 +1,7 @@
 package com.liangjinhai.supercat.sys.service;
 
+import com.liangjinhai.supercat.common.vo.PageResult;
+import com.liangjinhai.supercat.sys.criteria.UserCriteria;
 import com.liangjinhai.supercat.sys.entity.User;
 
 import java.util.List;
@@ -19,4 +21,7 @@ public interface UserService {
     User getUserByUserName(String username);
 
     User getUserRole(String username);
+
+    PageResult<User> findAll(UserCriteria criteria);
+
 }

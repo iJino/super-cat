@@ -1,5 +1,7 @@
 package com.liangjinhai.supercat.sys.controller;
 
+import com.liangjinhai.supercat.common.vo.PageResult;
+import com.liangjinhai.supercat.sys.criteria.UserCriteria;
 import com.liangjinhai.supercat.sys.entity.User;
 import com.liangjinhai.supercat.sys.service.UserService;
 import org.springframework.cache.Cache;
@@ -38,4 +40,11 @@ public class testController {
         return user.toString();
     }
 
+    @RequestMapping("/testPageHelper")
+    @ResponseBody
+    public String testPageHelper() {
+        UserCriteria criteria = new UserCriteria();
+        PageResult<User> page = userService.findAll(criteria);
+        return page.toString();
+    }
 }

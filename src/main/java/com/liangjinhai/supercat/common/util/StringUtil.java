@@ -31,4 +31,21 @@ public class StringUtil {
         }
         return builder.toString();
     }
+
+
+    /**
+     * @Description: 按照位数生成随机数
+     * @Param: [num]
+     * @return: java.lang.String
+     * @Author: liangJinHai
+     * @Date: 2018/9/15 12:22
+     */
+    public static String RandomStr(Integer num) {
+        String result = "";
+        for (int i = 0; i < num; i++) {
+            int intVal = (int) (Math.random() * 26 + 97);
+            result = result + (char) intVal;
+        }
+        return result;
+    }
 }

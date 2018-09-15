@@ -88,20 +88,12 @@ public class User implements Serializable {
         this.roles = roles;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getCreateby() {
+    public Integer getCreateby() {
         return createby;
-    }
-
-    public void setCreateby(int createby) {
-        this.createby = createby;
     }
 
     public String getUsername() {
