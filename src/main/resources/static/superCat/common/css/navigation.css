@@ -1,0 +1,64 @@
+﻿nav {
+	max-width: 100%;
+	height: 10%;
+	margin: 0 auto;
+	padding: 0 0;
+	background-color: #0055bb;
+}
+*{
+    margin:0;
+    padding:0;
+}
+
+
+nav > .supercat-inline-nav {
+    text-align: left;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 25%, rgba(255, 255, 255, 0.2) 75%, rgba(255, 255, 255, 0) 100%);
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.1), inset 0 0 1px rgba(255, 255, 255, 0.6);
+    color: white;
+}
+
+.supercat-inline-nav > li {
+    display: inline-block;
+}
+
+nav ul li a {
+    padding: 25px;
+    font-family: "Open Sans";
+    text-transform: uppercase;
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+    display: block;
+}
+
+.qiyouji-block > li > a:hover {
+    color: #0b8af1;
+}
+
+.dropdown-menu {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+}
+
+nav ul li a:hover {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1), inset 0 0 1px rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.1);
+    color: yellowgreen;
+
+}
+
+nav li i {
+    margin-left: 10px;
+}
+
+.logo {
+    width: 182px;
+    height: 59px;
+    position: absolute;
+    top: 20px;
+}
+
+nav {
+    z-index: 999;
+    height: 80px
+}

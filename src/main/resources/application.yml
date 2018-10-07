@@ -1,5 +1,11 @@
+eureka:
+  client:
+    serviceUrl:
+      #ַ服务注册地址
+      defaultZone: http://localhost:8761/eureka/
+
 server:
-  port: 8888
+  port: 1118
 
 #jdbc:
 #  driver: com.mysql.jdbc.Driver
@@ -51,11 +57,31 @@ spring:
       connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
       # 合并多个DruidDataSource的监控数据
       useGlobalDataSourceStat: true
+#  #系统缓存配置
   cache:
-    type: ehcache
     ehcache:
       config: classpath:config/ehcache.xml
-
+    type: ehcache
+  #邮箱设置
+  mail:
+    #发送方邮箱
+    host: smtp.qq.com
+    #默认25端口，可省略
+    #port: 25
+    default-encoding: UTF-8
+    protocol: smtp
+    username: liangjinhai233@qq.com
+    #邮箱授权码
+    password: kiqvccdcfpgebcie
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+  application:
+    name: super-cat
 
 mybatis_config_file: config/mybatis-config.xml
 mapper_path: /mapping/**.xml

@@ -1,5 +1,6 @@
 package com.liangjinhai.supercat.sys.controller;
 
+import com.liangjinhai.supercat.common.util.ObjectUtil;
 import com.liangjinhai.supercat.common.vo.PageResult;
 import com.liangjinhai.supercat.sys.criteria.UserCriteria;
 import com.liangjinhai.supercat.sys.entity.User;
@@ -42,8 +43,10 @@ public class testController {
 
     @RequestMapping("/testPageHelper")
     @ResponseBody
-    public String testPageHelper() {
-        UserCriteria criteria = new UserCriteria();
+    public String testPageHelper(UserCriteria criteria) {
+        if (ObjectUtil.isEmpty(criteria)) {
+            criteria = new UserCriteria();
+        }
         PageResult<User> page = userService.findAll(criteria);
         return page.toString();
     }

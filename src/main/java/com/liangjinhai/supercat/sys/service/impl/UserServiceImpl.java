@@ -7,7 +7,6 @@ import com.liangjinhai.supercat.sys.criteria.UserCriteria;
 import com.liangjinhai.supercat.sys.entity.User;
 import com.liangjinhai.supercat.sys.mapper.UserMapper;
 import com.liangjinhai.supercat.sys.service.UserService;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.cache.Cache;
 import org.springframework.cache.ehcache.EhCacheCacheManager;
