@@ -49,6 +49,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public int insertUser(User user) {
         User currentUser = (User) SecurityUtils.getSubject().getPrincipal();
+        user.setUsername(user.getMobilePhone());
         user.setCreateTime(new Date());
         user.setCreateby(currentUser.getId());
         user.setSalt(StringUtil.RandomStr(6));

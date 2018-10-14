@@ -5,6 +5,7 @@
     <resultMap id="UserRole" type="com.liangjinhai.supercat.sys.entity.User">
         <id column="uid" property="id"></id>
         <result column="uname" property="username"></result>
+        <result column="name" property="name"></result>
         <result column="password" property="password"></result>
         <result column="ustatus" property="status"></result>
         <result column="salt" property="salt"></result>
@@ -25,7 +26,7 @@
     </resultMap>
 
     <select id="getUserRole" resultMap="UserRole">
-        select u.id uid, u.username uname,u.salt, u.password, u.status ustatus, u.expiry_time, r.id rid, r.name rname, r.role_name, r.status rstatus, m.id mid, m.name mname, m.type type, m.status mstatus, m.menu_value
+        select u.id uid,u.name, u.username uname,u.salt, u.password, u.status ustatus, u.expiry_time, r.id rid, r.name rname, r.role_name, r.status rstatus, m.id mid, m.name mname, m.type type, m.status mstatus, m.menu_value
         from user u
         left JOIN user_role ur on ur.user_id = u.id
         left JOIN role r on r.id = ur.role_id
@@ -41,14 +42,14 @@
     </select>
 
     <select id="queryUser" resultType="User">
-        SELECT id, username, mobile_phone, password, salt, create_time, modify_time, expiry_time, id_num, status,createby
+        SELECT id, username,name, mobile_phone, password, salt, create_time, modify_time, expiry_time, id_num, status,createby
         FROM user
         ORDER BY create_time
         DESC
     </select>
 
     <select id="queryUserById" resultType="User">
-        SELECT id, username, mobile_phone, password, salt, create_time, modify_time, expiry_time, id_num, status,createby
+        SELECT id, username, name, mobile_phone, password, salt, create_time, modify_time, expiry_time, id_num, status,createby
         FROM user
         WHERE
         id = #{userId}
@@ -56,15 +57,16 @@
 
     <insert id="insertUser" useGeneratedKeys="true" keyProperty="id"
             keyColumn="id" parameterType="User">
-        INSERT INTO  user(username, mobile_phone, password, salt, create_time, modify_time, expiry_time, id_num, status,createby)
+        INSERT INTO  user(username, name, mobile_phone, password, salt, create_time, modify_time, expiry_time, id_num, status,createby)
         VALUES
-        (#{username},#{mobilePhone},#{password},#{salt},#{createTime},#{modifyTime},#{expiryTime},#{idNum},#{status},#{createby})
+        (#{username},#{name},#{mobilePhone},#{password},#{salt},#{createTime},#{modifyTime},#{expiryTime},#{idNum},#{status},#{createby})
     </insert>
 
     <update id="updateUser" parameterType="User">
         UPDATE user
         <set>
             <if test="username!=null">username=#{username}</if>
+            <if test="name!=null">name=#{name}</if>
             <if test="mobilePhone!=null">mobile_phone=#{mobilePhone}</if>
             <if test="password!=null">password=#{password}</if>
             <if test="salt!=null">salt=#{salt}</if>

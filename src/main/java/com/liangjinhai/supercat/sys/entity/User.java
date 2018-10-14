@@ -22,6 +22,10 @@ public class User implements Serializable {
      */
     private String username;
     /**
+     * 姓名
+     * */
+    private String name;
+    /**
      * 联系电话
      */
     private String mobilePhone;
@@ -63,6 +67,14 @@ public class User implements Serializable {
     private Set<User> childUser;
 
     private Set<Role> roles;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public User getParentUser() {
         return parentUser;

@@ -2,6 +2,7 @@ package com.liangjinhai.supercat.sys.controller;
 
 
 import com.liangjinhai.supercat.sys.entity.User;
+import com.liangjinhai.supercat.sys.service.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.subject.Subject;
@@ -15,11 +16,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpSession;
+import javax.annotation.Resource;
 
 @Controller
 public class LoginController {
-    private Logger log = LoggerFactory.getLogger(LoginController.class);
+    @Resource
+    private UserService userService;
+
+    private final static  Logger log = LoggerFactory.getLogger(LoginController.class);
 
     @RequestMapping({"/","/login"})
     public ModelAndView login(){
@@ -40,9 +44,9 @@ public class LoginController {
     }
 
     @PostMapping({"/","/login"})
-    public ModelAndView login(User user,Boolean rememberMe,RedirectAttributes redirectAttributes){
-        ModelAndView mv = new ModelAndView("/home");
-        ModelAndView errormv = new ModelAndView("redirect:/login");
+    public ModelAndView login(User user,Boolean rememberMe,RedirectAttributes redirectAttributes, Model model){
+        ModelAndView successMV = new ModelAndView("/home");
+        ModelAndView errorMV = new ModelAndView("redirect:/login");
         String userName = user.getUsername();
         UsernamePasswordToken usernamePasswordToken=new UsernamePasswordToken(userName,user.getPassword());
         Subject subject = SecurityUtils.getSubject();
@@ -51,8 +55,9 @@ public class LoginController {
                 usernamePasswordToken.setRememberMe(true);
             }
             subject.login(usernamePasswordToken);   //完成登录
-            subject.getSession().setAttribute("user", user);
-            return mv;
+            subject.getSession().setAttribute("user", userService.getPasswordByUserName(user.getUsername()));
+            model.addAttribute("user",(User)SecurityUtils.getSubject().getPrincipal());
+            return successMV;
         } catch (ExpiredCredentialsException uae) {
             redirectAttributes.addFlashAttribute("message", "账号已过期");
         } catch (UnknownAccountException uae) {
@@ -74,7 +79,7 @@ public class LoginController {
             redirectAttributes.addFlashAttribute("message", "用户名或密码不正确");
         }
         usernamePasswordToken.clear();
-        return errormv;
+        return errorMV;
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
