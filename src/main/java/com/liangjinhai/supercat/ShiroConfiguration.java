@@ -31,10 +31,16 @@ public class ShiroConfiguration {
         //配置访问权限
         LinkedHashMap<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
         filterChainDefinitionMap.put("/login", "anon"); //表示可以匿名访问
-        filterChainDefinitionMap.put("/loginUser", "anon");
+        filterChainDefinitionMap.put("/index", "anon"); //表示可以匿名访问
+        filterChainDefinitionMap.put("/static/**", "anon");
+        filterChainDefinitionMap.put("/user/create", "anon");
+        filterChainDefinitionMap.put("/adminlte/**", "anon");
+//        filterChainDefinitionMap.put("/supercat/*", "anon");
+        filterChainDefinitionMap.put("/images/**", "anon");
+        filterChainDefinitionMap.put("/css/**", "anon");
         filterChainDefinitionMap.put("/logout", "anon");
         filterChainDefinitionMap.put("/error/*", "anon");
-        filterChainDefinitionMap.put("/index", "authc");
+//        filterChainDefinitionMap.put("/index", "authc");
         filterChainDefinitionMap.put("/*", "authc");//表示需要认证才可以访问
         filterChainDefinitionMap.put("/**", "authc");//表示需要认证才可以访问
         filterChainDefinitionMap.put("/*.*", "authc");

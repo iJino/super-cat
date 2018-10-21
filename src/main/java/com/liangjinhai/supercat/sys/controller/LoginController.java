@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+
 import javax.annotation.Resource;
 
 @Controller
@@ -27,7 +28,7 @@ public class LoginController {
 
     @RequestMapping({"/","/login"})
     public ModelAndView login(){
-        ModelAndView mv =new ModelAndView("/login");
+        ModelAndView mv =new ModelAndView("/index");
         ModelAndView success = new ModelAndView("/home");
         try {
             //    若已经登录或者cookies还存在

@@ -11,6 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 @Controller
 @RequestMapping("/user")
@@ -22,17 +29,37 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/create")
-    public ModelAndView create(){
+    public ModelAndView create() {
         ModelAndView mv = new ModelAndView("user/create");
-        mv.addObject("user",new User());
+        mv.addObject("user", new User());
         return mv;
     }
 
     @PostMapping("/create")
-    public ModelAndView create(User user){
+    public ModelAndView create(User user) {
         Integer result = userService.insertUser(user);
         ModelAndView mv = new ModelAndView("user/create");
-        mv.addObject("user",new User());
+        mv.addObject("user", new User());
         return mv;
+    }
+
+    @RequestMapping("/text")
+    public void text() throws ScriptException, FileNotFoundException {
+        ScriptEngineManager m = new ScriptEngineManager(); //获取JavaScript执行引擎
+        ScriptEngine engine = m.getEngineByName("JavaScript"); //执行JavaScript代码
+        try {
+            File f = new File("D:\\myProject\\super-cat-2\\src\\main\\resources\\templates\\123321.js");
+            FileInputStream inputStream = new FileInputStream(f);
+            byte[] b = new byte[inputStream.available()];
+            inputStream.read(b);
+            System.out.println(b);
+
+            System.out.println(new String(b));
+            engine.eval(new String(b));
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        }
+
     }
 }
