@@ -1,5 +1,8 @@
 package com.liangjinhai.supercat.sys.entity;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.Date;
 
 /**
@@ -7,10 +10,12 @@ import java.util.Date;
  * @Date: 2018/10/8
  * @Description: 字典
  */
+@Document(collection = "dictionary_data")
 public class DictionaryData {
     /**
      *主键
      */
+    @Id
     private Integer id;
     /**
      *代码

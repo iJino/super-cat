@@ -25,6 +25,14 @@ public class Blog {
     /**浏览量*/
     private Integer pageviews;
 
+    public Integer getPageviews() {
+        return pageviews;
+    }
+
+    public void setPageviews(Integer pageviews) {
+        this.pageviews = pageviews;
+    }
+
     public User getUser() {
         return user;
     }
