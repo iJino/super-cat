@@ -6,7 +6,7 @@ public class MapUtil {
     /**
      * 转为map格式
      */
-    public static Map<?, ?> objectToMap(Object obj) {
+    public static Map<?, ?> object2Map(Object obj) {
         if (obj == null) {
             return null;
         }

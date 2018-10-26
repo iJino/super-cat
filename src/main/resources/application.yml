@@ -87,6 +87,12 @@ spring:
     static-path-pattern: /static/**
   resources:
     static-locations: classpath:/static/
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: supercat
+#      uri: mongodb://localhost:27017/supercat
 
 mybatis_config_file: config/mybatis-config.xml
 mapper_path: /mapping/**.xml
