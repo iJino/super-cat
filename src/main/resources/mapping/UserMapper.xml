@@ -42,14 +42,14 @@
     </select>
 
     <select id="queryUser" resultType="User">
-        SELECT id, username,name, mobile_phone, password, salt, create_time, modify_time, expiry_time, id_num, status,createby
+        SELECT id, username,name, mobile_phone, password, salt, create_time, modify_time, expiry_time, id_num, status, email
         FROM user
         ORDER BY create_time
         DESC
     </select>
 
     <select id="queryUserById" resultType="User">
-        SELECT id, username, name, mobile_phone, password, salt, create_time, modify_time, expiry_time, id_num, status,createby
+        SELECT id, username, name, mobile_phone, password, salt, create_time, modify_time, expiry_time, id_num, status, email
         FROM user
         WHERE
         id = #{userId}
@@ -57,9 +57,9 @@
 
     <insert id="insertUser" useGeneratedKeys="true" keyProperty="id"
             keyColumn="id" parameterType="User">
-        INSERT INTO  user(username, name, mobile_phone, password, salt, create_time, modify_time, expiry_time, id_num, status,createby)
+        INSERT INTO  user(username, name, mobile_phone, password, salt, create_time, modify_time, expiry_time, id_num, status, email)
         VALUES
-        (#{username},#{name},#{mobilePhone},#{password},#{salt},#{createTime},#{modifyTime},#{expiryTime},#{idNum},#{status},#{createby})
+        (#{username},#{name},#{mobilePhone},#{password},#{salt},#{createTime},#{modifyTime},#{expiryTime},#{idNum},#{status},#{email})
     </insert>
 
     <update id="updateUser" parameterType="User">
@@ -75,7 +75,7 @@
             <if test="expiryTime!=null">expiry_time=#expiryTime{}</if>
             <if test="idNum!=null">id_num=#{idNum}</if>
             <if test="status!=null">status=#{status}</if>
-            <if test="createby!=null">createby=#{createby}</if>
+            <if test="email!=null">status=#{email}</if>
         </set>
         WHERE id = #{id}
     </update>

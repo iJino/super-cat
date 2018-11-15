@@ -30,6 +30,10 @@ public class User implements Serializable {
      */
     private String mobilePhone;
     /**
+     * 电子邮箱
+     */
+    private String email;
+    /**
      * 密码
      */
     private String password;
@@ -57,12 +61,6 @@ public class User implements Serializable {
      * 状态
      */
     private String status;
-    /**
-     * 创建人
-     */
-    private Integer createby;
-
-    private User parentUser;
 
     private Set<User> childUser;
 
@@ -76,13 +74,6 @@ public class User implements Serializable {
         this.name = name;
     }
 
-    public User getParentUser() {
-        return parentUser;
-    }
-
-    public void setParentUser(User parentUser) {
-        this.parentUser = parentUser;
-    }
 
     public Set<User> getChildUser() {
         return childUser;
@@ -104,9 +95,6 @@ public class User implements Serializable {
         return id;
     }
 
-    public Integer getCreateby() {
-        return createby;
-    }
 
     public String getUsername() {
         return username;
@@ -184,21 +172,29 @@ public class User implements Serializable {
         this.status = status;
     }
 
-    public void setCreateby(Integer createby) {
-        this.createby = createby;
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", username='" + username + '\'' + ", mobilePhone='" + mobilePhone + '\'' + ", password='" + password + '\'' +
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", name='" + name + '\'' +
+                ", mobilePhone='" + mobilePhone + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
                 ", salt='" + salt + '\'' +
                 ", createTime=" + createTime +
                 ", modifyTime=" + modifyTime +
                 ", expiryTime=" + expiryTime +
                 ", idNum='" + idNum + '\'' +
                 ", status='" + status + '\'' +
-                ", createby=" + createby +
-                ", parentUser=" + parentUser +
                 ", childUser=" + childUser +
                 ", roles=" + roles +
                 '}';

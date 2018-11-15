@@ -1,7 +1,11 @@
 package com.liangjinhai.supercat.common.util;
 
+import org.springframework.util.StringUtils;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
 public class StringUtil {
 
@@ -48,4 +52,14 @@ public class StringUtil {
         }
         return result;
     }
+
+    public static boolean isBlank(String str) {
+        return !isNotBlank(str);
+    }
+
+    public static boolean isNotBlank(String str) {
+        return StringUtils.hasText(str);
+    }
+
+
 }

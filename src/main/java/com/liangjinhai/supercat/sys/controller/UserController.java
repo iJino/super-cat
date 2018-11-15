@@ -28,18 +28,10 @@ public class UserController {
     @Resource
     private UserService userService;
 
-    @GetMapping("/create")
-    public ModelAndView create() {
-        ModelAndView mv = new ModelAndView("user/create");
-        mv.addObject("user", new User());
-        return mv;
-    }
-
     @PostMapping("/create")
     public ModelAndView create(User user) {
         Integer result = userService.insertUser(user);
-        ModelAndView mv = new ModelAndView("user/create");
-        mv.addObject("user", new User());
+        ModelAndView mv = new ModelAndView("redirect:/login");
         return mv;
     }
 

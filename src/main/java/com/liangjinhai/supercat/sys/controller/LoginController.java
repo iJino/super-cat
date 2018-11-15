@@ -47,7 +47,7 @@ public class LoginController {
     @PostMapping({"/","/login"})
     public ModelAndView login(User user,Boolean rememberMe,RedirectAttributes redirectAttributes, Model model){
         ModelAndView successMV = new ModelAndView("/home");
-        ModelAndView errorMV = new ModelAndView("redirect:/login");
+        ModelAndView errorMV = new ModelAndView("redirect:/index");
         String userName = user.getUsername();
         UsernamePasswordToken usernamePasswordToken=new UsernamePasswordToken(userName,user.getPassword());
         Subject subject = SecurityUtils.getSubject();
@@ -60,24 +60,24 @@ public class LoginController {
             model.addAttribute("user",(User)SecurityUtils.getSubject().getPrincipal());
             return successMV;
         } catch (ExpiredCredentialsException uae) {
-            redirectAttributes.addFlashAttribute("message", "账号已过期");
+            errorMV.addObject("message", "账号已过期");
         } catch (UnknownAccountException uae) {
             log.info("对用户[" + userName + "]进行登录验证..验证未通过,未知账户");
-            redirectAttributes.addFlashAttribute("message", "未知账户");
+            errorMV.addObject("message", "未知账户");
         } catch (IncorrectCredentialsException ice) {
             log.info("对用户[" + userName + "]进行登录验证..验证未通过,错误的凭证");
-            redirectAttributes.addFlashAttribute("message", "用户名或密码不正确");
+            errorMV.addObject("message", "用户名或密码不正确");
         } catch (LockedAccountException lae) {
             log.info("对用户[" + userName + "]进行登录验证..验证未通过,账户已锁定");
-            redirectAttributes.addFlashAttribute("message", "账户已锁定");
+            errorMV.addObject("message", "账户已锁定");
         } catch (ExcessiveAttemptsException eae) {
             log.info("对用户[" + userName + "]进行登录验证..验证未通过,错误次数过多");
-            redirectAttributes.addFlashAttribute("message", "用户名或密码错误次数过多");
+            errorMV.addObject("message", "用户名或密码错误次数过多");
         } catch (AuthenticationException ae) {
 //            通过处理Shiro的运行时AuthenticationException就可以控制用户登录失败或密码错误时的情景
             log.info("对用户[" + userName + "]进行登录验证..验证未通过,堆栈轨迹如下");
             ae.printStackTrace();
-            redirectAttributes.addFlashAttribute("message", "用户名或密码不正确");
+            errorMV.addObject("message", "用户名或密码不正确");
         }
         usernamePasswordToken.clear();
         return errorMV;

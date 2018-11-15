@@ -27,6 +27,9 @@ public class BaseResult {
     }
 
     //--------------- success -----------------//
+    public static BaseResult success(){
+        return new BaseResult(true, null, null);
+    }
     public static BaseResult success(String msg){
         return new BaseResult(true, msg, null);
     }
@@ -38,6 +41,9 @@ public class BaseResult {
     }
 
     //--------------- failed -----------------//
+    public static BaseResult failed(){
+        return new BaseResult(false, null, null);
+    }
     public static BaseResult failed(String msg){
         return new BaseResult(false, msg, null);
     }

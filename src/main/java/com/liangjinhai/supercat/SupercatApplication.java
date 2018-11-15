@@ -24,7 +24,6 @@ public class SupercatApplication extends SpringBootServletInitializer {
 
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application){
-
 		return application.sources(SupercatApplication.class);
 	}
 

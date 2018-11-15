@@ -1,4 +1,4 @@
-package com.liangjinhai.supercat.common.config;
+package com.liangjinhai.supercat.mongo.config;
 
 import com.mongodb.MongoClient;
 import org.springframework.beans.factory.annotation.Value;
