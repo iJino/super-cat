@@ -1,6 +1,7 @@
 package com.liangjinhai.supercat.sys.controller;
 
 
+import com.liangjinhai.supercat.common.util.IpUtil;
 import com.liangjinhai.supercat.sys.entity.User;
 import com.liangjinhai.supercat.sys.service.UserService;
 import org.apache.shiro.SecurityUtils;
@@ -18,6 +19,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 
 @Controller
 public class LoginController {
@@ -45,7 +48,13 @@ public class LoginController {
     }
 
     @PostMapping({"/","/login"})
-    public ModelAndView login(User user,Boolean rememberMe,RedirectAttributes redirectAttributes, Model model){
+    public ModelAndView login(User user, Boolean rememberMe, RedirectAttributes redirectAttributes, Model model, HttpServletRequest request){
+        System.out.println(IpUtil.getIpAddress(request));
+        try {
+            System.out.println(IpUtil.getIp(request));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         ModelAndView successMV = new ModelAndView("/home");
         ModelAndView errorMV = new ModelAndView("redirect:/index");
         String userName = user.getUsername();
