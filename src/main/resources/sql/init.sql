@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS `menu`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `menu` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `create_time` datetime DEFAULT NULL,
+  `create_time` date DEFAULT NULL,
   `http_method` varchar(255) DEFAULT NULL,
   `menu_key` varchar(255) NOT NULL,
   `menu_value` varchar(255) NOT NULL,
@@ -46,7 +46,7 @@ CREATE TABLE `menu` (
 
 LOCK TABLES `menu` WRITE;
 /*!40000 ALTER TABLE `menu` DISABLE KEYS */;
-INSERT INTO `menu` VALUES (1,'2018-08-16 11:44:09',NULL,'FOLDER','FOLDER','系统',1,'ENABLED','FOLDER',NULL,NULL),(2,'2018-08-16 11:44:09',NULL,'URL','URL','菜单管理',1,'ENABLED','URL',1,NULL);
+INSERT INTO `menu` VALUES (1,'2018-08-16',NULL,'FOLDER','FOLDER','系统',1,'ENABLED','FOLDER',NULL,NULL),(2,'2018-08-16',NULL,'URL','URL','菜单管理',1,'ENABLED','URL',1,NULL);
 /*!40000 ALTER TABLE `menu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -59,7 +59,7 @@ DROP TABLE IF EXISTS `role`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `role` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `create_time` datetime DEFAULT NULL,
+  `create_time` date DEFAULT NULL,
   `name` varchar(255) NOT NULL,
   `role_name` varchar(255) NOT NULL,
   `status` varchar(255) NOT NULL,
@@ -118,21 +118,20 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `username` varchar(15) NOT NULL COMMENT '用户中文名',
+  `username` varchar(15) NOT NULL COMMENT '用户名',
+  `name` varchar(10) DEFAULT NULL COMMENT '姓名',
   `mobile_phone` varchar(18) DEFAULT NULL COMMENT '联系电话',
   `password` varchar(255) NOT NULL COMMENT '密码',
   `salt` varchar(255) DEFAULT NULL COMMENT '盐',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `modify_time` datetime DEFAULT NULL COMMENT '修改时间',
-  `expiry_time` datetime DEFAULT NULL COMMENT '失效时间',
+  `create_time` date DEFAULT NULL COMMENT '创建时间',
+  `modify_time` date DEFAULT NULL COMMENT '修改时间',
+  `expiry_time` date DEFAULT NULL COMMENT '失效时间',
   `id_num` varchar(18) DEFAULT NULL COMMENT '身份证号码',
   `status` varchar(10) DEFAULT NULL COMMENT '状态',
-  `createby` int(11) DEFAULT NULL COMMENT '创建人',
+  `email` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `username` (`username`),
-  KEY `createby` (`createby`),
-  CONSTRAINT `user_ibfk_1` FOREIGN KEY (`createby`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -141,7 +140,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'ljh',NULL,'123','jfW17A','2018-02-06 17:59:35',NULL,NULL,NULL,NULL,NULL),(2,'qwe',NULL,'qwe','qwe','2018-09-06 17:59:35',NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `user` VALUES (1,'admin',NULL,NULL,'860e46066a1a587501cf653acbb77200','chhtmx','2018-02-06',NULL,NULL,NULL,NULL,NULL),(19,'13631294810','梁锦海','13631294810','aced60da4cd8ac19a5cba83cdfe8faf8','bfsxhz','2018-10-14',NULL,NULL,NULL,NULL,NULL),(20,'13631446785','陆嘉倩','13631446785','0373e2a2b5051b033f9a42babee50a12','yjzekl','2018-11-15',NULL,NULL,NULL,NULL,'1451352204@qq.com');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -187,4 +186,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-09-14 10:57:10
+-- Dump completed on 2018-11-15 17:55:12
