@@ -7,8 +7,9 @@ import com.liangjinhai.supercat.sys.criteria.UserCriteria;
 import com.liangjinhai.supercat.sys.entity.User;
 import com.liangjinhai.supercat.sys.mapper.UserMapper;
 import com.liangjinhai.supercat.sys.service.UserService;
-import org.apache.shiro.SecurityUtils;
 import org.springframework.cache.Cache;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.ehcache.EhCacheCacheManager;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
@@ -33,17 +34,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @CachePut(value="users", key = "'user_'+#userId")
     public User queryUserById(int userId) {
-        User user = new User();
-        Cache cache = cacheManager.getCache(CACHE_KEY);
-        if (null == cache.get("user_2")) {
-            System.err.println("缓存里没有user_"+userId+",所以这边没有走缓存，从数据库拿数据");
-            user = userMapper.queryUserById(userId);
-            cache.put("user_"+userId,user);
-        }else{
-            user = (User) cache.get("user_"+userId).get();
-        }
+        User user = userMapper.queryUserById(userId);
+//        Cache cache = cacheManager.getCache(CACHE_KEY);
+//        if (null == cache.get("user_2")) {
+//        System.err.println("缓存里没有user_" + userId + ",所以这边没有走缓存，从数据库拿数据");
+//            cache.put("user_"+userId,user);
         return user;
+
+//        }else{
+//            user = (User) cache.get("user_"+userId).get();
+//        }
+//        return user;
     }
 
     @Override
@@ -71,7 +74,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserRole(String username){
+    public User getUserRole(String username) {
         return userMapper.getUserRole(username);
     }
 

@@ -11,6 +11,8 @@ server:
 #  username: root
 #  password: 123456
 spring:
+    profiles:
+      active: dev
     thymeleaf:
         cache: false
         charset: UTF-8

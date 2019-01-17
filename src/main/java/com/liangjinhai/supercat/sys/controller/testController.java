@@ -29,7 +29,7 @@ public class testController {
     public String getUser() {
         User user = new User();
         Cache cache = cacheManager.getCache(USER_CACHE);
-        user = userService.queryUserById(2);
+        user = userService.queryUserById(19);
         return user.toString();
     }
 
